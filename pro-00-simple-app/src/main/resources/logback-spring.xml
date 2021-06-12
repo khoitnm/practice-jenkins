@@ -1,0 +1,12 @@
+<configuration>
+    <appender name="COLORFUL_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%green(%d{HH:mm:ss.SSSZ}) [%thread] [%highlight(%-5level)] %logger{36} - %green(%msg) - %mdc %n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.tnmk" level="ALL"/>
+    <root level="INFO">
+        <appender-ref ref="COLORFUL_CONSOLE"/>
+    </root>
+</configuration>
