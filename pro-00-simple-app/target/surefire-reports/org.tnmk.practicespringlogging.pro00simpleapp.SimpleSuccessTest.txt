@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.tnmk.practicespringlogging.pro00simpleapp.SimpleSuccessTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.608 s - in org.tnmk.practicespringlogging.pro00simpleapp.SimpleSuccessTest
