@@ -1,4 +1,4 @@
 
 some.key.in.application.yml: SomeValueIn application.yml
 server:
-  port: 8000
+  port: 8001
