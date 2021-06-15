@@ -3,14 +3,17 @@ pipeline {
     agent any
 //     triggers {pollSCM('* * * * *')}
     stages {
-        stage('Verify Branch') {
+        stage('Verify Branch - always run') {
             steps {
                 // View variables here: http://localhost:8080/env-vars.html/
                 // Note: Branch name is used for multi-branch project.
                 echo "Hello World GitBranch: $GIT_BRANCH"
             }
         }
-        stage('Docker Build') {
+        stage('Docker Build on Master only') {
+            when {
+                branch 'master'
+            }
             steps {
                 bat(script: 'docker images -a')
             }
