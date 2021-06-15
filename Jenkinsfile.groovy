@@ -10,9 +10,9 @@ pipeline {
                 echo "Hello World GitBranch: $GIT_BRANCH"
             }
         }
-        stage('Docker Build on Master only') {
+        stage('Docker Build on Main branch only') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 bat(script: 'docker images -a')
