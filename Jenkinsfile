@@ -1,5 +1,7 @@
 pipeline {
-    agent { docker { image 'maven:3.3.3' } }
+    // agent { docker { image 'maven:3.3.3' } }
+    agent any
+    triggers {pollSCM('* * * * *')}
     stages {
         stage('build') {
             steps {
