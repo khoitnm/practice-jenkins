@@ -11,7 +11,8 @@ pipeline {
 
         stage('hello') {
             steps {
-                echo "Hello World $GIT_BRANCH"
+                // View variables here: http://localhost:8080/env-vars.html/
+                echo "Hello World GitBranch: $GIT_BRANCH & BranchName: $BRANCH_NAME"
             }
         }
     }
