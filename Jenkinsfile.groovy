@@ -22,9 +22,9 @@ pipeline {
         }
         stage('Show branch') {
             steps {
-                echo "Branch: $BRANCH_NAME"
-                echo "Git Commit: $GIT_COMMIT"
-                echo "Tag: $TAG_NAME"
+                echo "Branch: ${env.BRANCH_NAME}"
+                echo "Git Commit: ${env.GIT_COMMIT}"
+                echo "Tag: ${env.TAG_NAME}"
             }
         }
         stage('Check has tag') {
