@@ -30,6 +30,9 @@ pipeline {
                     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who are approving this deployment?')
                 }
             }
+            options {
+                timeout(time: 10, unit: 'SECONDS')
+            }
             steps {
                 echo "OK ${PERSON}, we'll deploying the app with your approval."
             }
