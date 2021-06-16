@@ -22,16 +22,16 @@ pipeline {
             when {
                 branch 'main'
             }
-            steps {
-                input message 'Deploy?'
+            // Input: https://www.jenkins.io/doc/book/pipeline/syntax/#input
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
             }
-            post {
-                success {
-                    echo 'Deploying to Prod'
-                }
-                aborted {
-                    echo 'Skip deploying to Prod'
-                }
+            steps {
+                echo "Hello, ${PERSON}, nice to meet you."
             }
         }
     }
