@@ -20,6 +20,14 @@ pipeline {
                 bat(script: 'docker images -a')
             }
         }
+        stage('Check has tag') {
+            when {
+                tag "release-*"
+            }
+            steps {
+                echo "has tag $TAG_NAME"
+            }
+        }
         stage('Deploy if get approval and has tag') {
             when {
                 allOf {
