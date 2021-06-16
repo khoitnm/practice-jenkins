@@ -25,8 +25,13 @@ pipeline {
             steps {
                 input message 'Deploy?'
             }
-            steps {
-                echo 'Deploying to Prod'
+            post {
+                success {
+                    echo 'Deploying to Prod'
+                }
+                aborted {
+                    echo 'Skip deploying to Prod'
+                }
             }
         }
     }
