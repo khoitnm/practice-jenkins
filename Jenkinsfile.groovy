@@ -34,5 +34,10 @@ pipeline {
                 echo "OK ${PERSON}, we'll deploying the app with your approval."
             }
         }
+        stage('Verify Deployment success') {
+            steps {
+                echo "Verify Deployment is already successful."
+            }
+        }
     }
 }
