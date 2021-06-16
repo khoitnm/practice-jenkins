@@ -1,6 +1,8 @@
 pipeline {
-    // agent { docker { image 'maven:3.3.3' } }
     agent any
+    parameters {
+        string(name: 'DEPLOY_COMMIT_ID', description: 'The git commit you want to deploy', defaultValue: '')
+    }
 //     triggers {pollSCM('* * * * *')}
     stages {
         stage('Verify Branch - always run') {
@@ -18,9 +20,12 @@ pipeline {
                 bat(script: 'docker images -a')
             }
         }
-        stage('Deploy if get approval') {
+        stage('Deploy if get approval and has tag') {
             when {
-                branch 'main'
+                allOf {
+                    branch 'main'
+                    tag "release-*"
+                }
             }
             // Input: https://www.jenkins.io/doc/book/pipeline/syntax/#input
             input {
