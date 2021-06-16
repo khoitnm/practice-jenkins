@@ -20,6 +20,11 @@ pipeline {
                 bat(script: 'docker images -a')
             }
         }
+        stage('Show tag') {
+            steps {
+                echo "Tag name $TAG_NAME"
+            }
+        }
         stage('Check has tag') {
             when {
                 tag "release-*"
