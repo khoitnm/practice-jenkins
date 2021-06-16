@@ -20,9 +20,11 @@ pipeline {
                 bat(script: 'docker images -a')
             }
         }
-        stage('Show tag') {
+        stage('Show branch') {
             steps {
-                echo "Tag name $TAG_NAME"
+                echo "Branch: $BRANCH_NAME"
+                echo "Git Commit: $GIT_COMMIT"
+                echo "Tag: $TAG_NAME"
             }
         }
         stage('Check has tag') {
