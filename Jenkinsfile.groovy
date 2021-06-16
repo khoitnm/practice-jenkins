@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    parameters {
-        string(name: 'DEPLOY_COMMIT_ID', description: 'The git commit you want to deploy', defaultValue: '')
-    }
+//    parameters {
+//        string(name: 'DEPLOY_COMMIT_ID', description: 'The git commit you want to deploy', defaultValue: '')
+//    }
 //     triggers {pollSCM('* * * * *')}
     stages {
         stage('Verify Branch - always run') {
