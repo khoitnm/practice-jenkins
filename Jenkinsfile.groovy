@@ -18,5 +18,16 @@ pipeline {
                 bat(script: 'docker images -a')
             }
         }
+        stage('Deploy if get approval') {
+            when {
+                branch 'main'
+            }
+            steps {
+                input message 'Deploy?'
+            }
+            steps {
+                echo 'Deploying to Prod'
+            }
+        }
     }
 }
