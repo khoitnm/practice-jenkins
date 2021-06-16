@@ -27,11 +27,11 @@ pipeline {
                 message "Should we continue?"
                 ok "Yes, we should."
                 parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who are approving this deployment?')
                 }
             }
             steps {
-                echo "Hello, ${PERSON}, nice to meet you."
+                echo "OK ${PERSON}, we'll deploying the app with your approval."
             }
         }
     }
