@@ -22,13 +22,14 @@ pipeline {
         }
         stage('Show branch') {
             steps {
-                script {
-                    env.TAG_CURRENT_BRANCH = git tag --contains
-                }
-                echo "tag from variable: ${env.TAG_CURRENT_BRANCH}"
                 echo "Branch: ${env.BRANCH_NAME}"
                 echo "Git Commit: ${env.GIT_COMMIT}"
                 echo "Tag: ${env.TAG_NAME}"
+
+                script {
+                    env.TAG_CURRENT_BRANCH = bat(returnStdout:  true, script: "git tag --contains").trim()
+                }
+                echo "tag from variable: ${env.TAG_CURRENT_BRANCH}"
             }
         }
         stage('Check has tag') {
