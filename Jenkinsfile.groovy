@@ -34,6 +34,7 @@ pipeline {
                     // Note: we don't get that problem with sh
                 }
                 echo "TAG_CURRENT_BRANCH: ${env.TAG_CURRENT_BRANCH}"
+                echo "TAG_CURRENT_BRANCH: ${stdout}"
             }
         }
         stage('Check has tag') {
