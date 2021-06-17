@@ -42,9 +42,7 @@ pipeline {
         stage('Check has tag') {
             when {
                 // tag "release-*"
-                expression {
-                    ${env.TAG_CURRENT_BRANCH} !== null
-                }
+                expression { env.TAG_CURRENT_BRANCH != null }
             }
             steps {
                 echo "Has tag ${env.TAG_CURRENT_BRANCH}"
@@ -55,9 +53,7 @@ pipeline {
                 allOf {
                     branch 'main'
                     //tag "release-*"
-                    expression {
-                        ${env.TAG_CURRENT_BRANCH} !== null
-                    }
+                    expression { env.TAG_CURRENT_BRANCH != null }
                 }
             }
             // Input: https://www.jenkins.io/doc/book/pipeline/syntax/#input
