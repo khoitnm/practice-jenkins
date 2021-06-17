@@ -27,9 +27,11 @@ pipeline {
                 echo "Tag: ${env.TAG_NAME}"
 
                 script {
-                    env.TAG_CURRENT_BRANCH = bat(returnStdout:  true, script: "git tag --contains").trim()
+                    env.TAG_CURRENT_BRANCH = bat(returnStdout: true, script: "git tag --contains").trim()
+                    env.DOCKER_IMAGES = bat(returnStdout: true, script: 'docker images -a')
                 }
-                echo "tag from variable: ${env.TAG_CURRENT_BRANCH}"
+                echo "TAG_CURRENT_BRANCH: ${env.TAG_CURRENT_BRANCH}"
+                echo "DOCKER_IMAGES: ${env.DOCKER_IMAGES}"
             }
         }
         stage('Check has tag') {
