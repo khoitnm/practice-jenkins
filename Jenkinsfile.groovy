@@ -27,6 +27,8 @@ pipeline {
                 echo "Tag: ${env.TAG_NAME}"
 
                 script {
+                    // To make this commandline works, we need to fetch tag when cloning git repo:
+                    // https://stackoverflow.com/questions/48292080/jenkins-multibranch-reference-git-repos-tag-from-pipeline-file-jenkinsfile
                     stdout = bat(returnStdout:true , script: "git tag --points-at=HEAD").trim()
                     env.TAG_CURRENT_BRANCH = stdout.readLines().drop(1).join(" ")
                     // The reason we have to do that is because with bat, it also returns the execution command line, not just result.
