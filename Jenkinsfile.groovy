@@ -22,6 +22,8 @@ pipeline {
         }
         stage('Show branch') {
             steps {
+                def tag = git tag --contains
+                echo "tag from variable: $tag"
                 echo "Branch: ${env.BRANCH_NAME}"
                 echo "Git Commit: ${env.GIT_COMMIT}"
                 echo "Tag: ${env.TAG_NAME}"
