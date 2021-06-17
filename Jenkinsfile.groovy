@@ -20,7 +20,7 @@ pipeline {
 //                bat(script: 'docker images -a')
 //            }
 //        }
-        stage('Show branch') {
+        stage('Show branch info') {
             steps {
                 echo "Branch: ${env.BRANCH_NAME}"
                 echo "Git Commit: ${env.GIT_COMMIT}"
@@ -29,7 +29,7 @@ pipeline {
                 script {
                     // To make this commandline works, we need to fetch tag when cloning git repo:
                     // https://stackoverflow.com/questions/48292080/jenkins-multibranch-reference-git-repos-tag-from-pipeline-file-jenkinsfile
-                    stdout = bat(returnStdout:true , script: "git tag --points-at=HEAD").trim()
+                    stdout = bat(returnStdout: true, script: "git tag --points-at=HEAD").trim()
                     env.TAG_CURRENT_BRANCH = stdout.readLines().drop(1).join(" ")
                     // The reason we have to do that is because with bat, it also returns the execution command line, not just result.
                     // Please view more in https://issues.jenkins.io/browse/JENKINS-44569
@@ -41,17 +41,19 @@ pipeline {
         }
         stage('Check has tag') {
             when {
-                tag "release-*"
+                // tag "release-*"
+                expression { env.TAG_CURRENT_BRANCH !== null }
             }
             steps {
-                echo "has tag $TAG_NAME"
+                echo "Has tag ${env.TAG_CURRENT_BRANCH}"
             }
         }
         stage('Deploy if get approval and has tag') {
             when {
                 allOf {
                     branch 'main'
-                    tag "release-*"
+                    //tag "release-*"
+                    expression { env.TAG_CURRENT_BRANCH !== null }
                 }
             }
             // Input: https://www.jenkins.io/doc/book/pipeline/syntax/#input
