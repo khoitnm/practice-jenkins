@@ -41,8 +41,10 @@ pipeline {
         }
         stage('Check has tag') {
             when {
-                // tag "release-*"
-                expression { env.TAG_CURRENT_BRANCH && !env.TAG_CURRENT_BRANCH.allWhitespace}
+                anyOf {
+                    tag "release*"
+                    expression { env.TAG_CURRENT_BRANCH && !env.TAG_CURRENT_BRANCH.allWhitespace}
+                }
             }
             steps {
                 echo "Has tag ${env.TAG_CURRENT_BRANCH}"
