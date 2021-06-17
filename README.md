@@ -15,7 +15,7 @@ Auto trigger build when tag a branch by using Ref Spec (looks like doesn't work)
 - Detail configuration of ref to tag: https://docs.mohami.io/webhook-to-jenkins-for-bitbucket/Triggering-Jenkins-Based-on-New-Tags.1787824873.html
     - Config "Specify ref specs": `+refs/tags/*:refs/remotes/@{remote}/tags/*`
 
-Auto trigger build when tag a branch by using "Discover Tag":
+Auto trigger build when tag a branch by using "Discover Tag" (this solution works):
 Note: Even when using Discover Tag option, it just creates a pipeline for the tag, but not start any build for that pipeline:
 - Config Discover Tag: https://www.jenkins.io/blog/2018/05/16/pipelines-with-git-tags/
 - The problem and the solution: https://issues.jenkins.io/browse/JENKINS-47496
