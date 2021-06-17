@@ -27,11 +27,13 @@ pipeline {
                 echo "Tag: ${env.TAG_NAME}"
 
                 script {
-                    env.TAG_CURRENT_BRANCH = bat(returnStdout: true, script: "git tag --contains").trim()
-                    env.DOCKER_IMAGES = bat(returnStdout: true, script: 'docker images -a')
+                    stdout = bat(returnStdout:true , script: "git tag --contains").trim()
+                    env.TAG_CURRENT_BRANCH = stdout.readLines().drop(1).join(" ")
+                    // The reason we have to do that is because with bat, it also returns the execution command line, not just result.
+                    // Please view more in https://issues.jenkins.io/browse/JENKINS-44569
+                    // Note: we don't get that problem with sh
                 }
                 echo "TAG_CURRENT_BRANCH: ${env.TAG_CURRENT_BRANCH}"
-                echo "DOCKER_IMAGES: ${env.DOCKER_IMAGES}"
             }
         }
         stage('Check has tag') {
