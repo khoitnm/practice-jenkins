@@ -27,7 +27,7 @@ pipeline {
                 echo "Tag: ${env.TAG_NAME}"
 
                 script {
-                    stdout = bat(returnStdout:true , script: "git tag --contains").trim()
+                    stdout = bat(returnStdout:true , script: "git tag --points-at=HEAD").trim()
                     env.TAG_CURRENT_BRANCH = stdout.readLines().drop(1).join(" ")
                     // The reason we have to do that is because with bat, it also returns the execution command line, not just result.
                     // Please view more in https://issues.jenkins.io/browse/JENKINS-44569
