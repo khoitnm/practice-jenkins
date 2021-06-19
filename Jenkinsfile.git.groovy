@@ -16,13 +16,13 @@ pipeline {
                 }
             }
         }
-    }
-    stage('Update latest tag') {
-        steps {
-            sshagent(credentials: [GIT_CREDENTIALS_ID]) {
-                sh "git tag --force ${LATEST_TAG}"
-                sh "git push origin --delete ${LATEST_TAG}"
-                sh "git push origin ${LATEST_TAG}"
+        stage('Update latest tag') {
+            steps {
+                sshagent(credentials: [GIT_CREDENTIALS_ID]) {
+                    sh "git tag --force ${LATEST_TAG}"
+                    sh "git push origin --delete ${LATEST_TAG}"
+                    sh "git push origin ${LATEST_TAG}"
+                }
             }
         }
     }
