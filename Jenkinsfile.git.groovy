@@ -24,9 +24,13 @@ pipeline {
 //                    bat "git push origin --delete ${LATEST_TAG}"
 //                    bat "git push origin ${LATEST_TAG}"
 //                }
-                bat "git tag --force ${LATEST_TAG}"
-                bat "git push origin --delete ${LATEST_TAG}"
-                bat "git push origin ${LATEST_TAG}"
+                script {
+                    existingTag = bat(returnStdout: true, script: "git tag --force ${LATEST_TAG}").trim()
+                    if (existingTag) {
+                        bat "git push origin --delete ${LATEST_TAG}"
+                    }
+                    bat "git push origin ${LATEST_TAG}"
+                }
             }
         }
     }
