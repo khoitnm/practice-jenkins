@@ -19,11 +19,14 @@ pipeline {
         }
         stage('Update latest tag') {
             steps {
-                sshagent(credentials: [GIT_CREDENTIALS_ID]) {
-                    bat "git tag --force ${LATEST_TAG}"
-                    bat "git push origin --delete ${LATEST_TAG}"
-                    bat "git push origin ${LATEST_TAG}"
-                }
+//                sshagent(credentials: [GIT_CREDENTIALS_ID]) {
+//                    bat "git tag --force ${LATEST_TAG}"
+//                    bat "git push origin --delete ${LATEST_TAG}"
+//                    bat "git push origin ${LATEST_TAG}"
+//                }
+                bat "git tag --force ${LATEST_TAG}"
+                bat "git push origin --delete ${LATEST_TAG}"
+                bat "git push origin ${LATEST_TAG}"
             }
         }
     }
