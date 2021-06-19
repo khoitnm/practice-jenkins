@@ -12,16 +12,17 @@ pipeline {
                 echo "DEPLOY_COMMIT_ID: ${params.DEPLOY_COMMIT_ID}"
                 checkout scm
                 script {
-                    sh "git checkout ${params.DEPLOY_COMMIT_ID}"
+//                    sh "git checkout ${params.DEPLOY_COMMIT_ID}"
+                    bat "git checkout ${params.DEPLOY_COMMIT_ID}"
                 }
             }
         }
         stage('Update latest tag') {
             steps {
                 sshagent(credentials: [GIT_CREDENTIALS_ID]) {
-                    sh "git tag --force ${LATEST_TAG}"
-                    sh "git push origin --delete ${LATEST_TAG}"
-                    sh "git push origin ${LATEST_TAG}"
+                    bat "git tag --force ${LATEST_TAG}"
+                    bat "git push origin --delete ${LATEST_TAG}"
+                    bat "git push origin ${LATEST_TAG}"
                 }
             }
         }
